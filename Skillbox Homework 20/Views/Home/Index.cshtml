@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style>
+            div{
+                margin: 10px;
+                border: 1px solid black;
+                font-size: 20px;
+                height: 80px;
+            }
+
+            #header{ 
+                background-color: #ccc;
+            }
+
+            #leftSidebar {
+                background-color: #ddd;
+                float: left;
+                width: 150px;
+            }
+
+            #rightSidebar {
+                background-color: #bbb;
+                float: right;
+                width: 150px;
+            }
+
+            #main {
+                background-color: #eee;
+                height: 200px;
+                margin-left: 170px;
+                margin-right: 170px;
+            }
+
+            #footer{ 
+                background-color: #ccc;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="header">Skillbox</div>
+        <div id="leftSidebar">Здесь могла бы быть ваша реклама</div>
+        <div id="rightSidebar">Здесь будут кнопки и нормальный дизайн с:</div>
+        <div id="main">
+        @model IEnumerable<Skillbox_Homework_20.Database.Information>
+        @{
+            Layout = null;
+
+            <table class="table">
+                <tr>
+                    <td>Id</td>
+                    <td>SecondName</td>
+                    <td>FirstName</td>
+                    <td>Patronymic</td>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td><a href="~/Home/Show/@item.Id">@item.Id</a></td>
+                        <td>@item.SecondName</td>
+                        <td>@item.FirstName</td>
+                        <td>@item.Patronymic</td>
+                    </tr>
+                }
+            </table>
+        }
+        </div>
+        <div id="footer">2022</div>
+    </body>
+</html>
