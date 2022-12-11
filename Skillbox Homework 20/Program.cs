@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Skillbox_Homework_20.Database;
@@ -30,10 +31,14 @@ namespace Skillbox_Homework_20
 
             host.Run();
         }
-            public static IHostBuilder CreateHostBuilder(string[] args)
-                => Host.CreateDefaultBuilder(args)
-                    .ConfigureWebHostDefaults(
-                        webBuilder => webBuilder.UseStartup<Startup>());
+        public static IHostBuilder CreateHostBuilder(string[] args)
+            => Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(
+                    webBuilder =>
+                    {
+                        webBuilder.UseStartup<Startup>();
+                        webBuilder.UseWebRoot("bootstrap");
+                    });
         }
 
     public class Startup
@@ -77,6 +82,9 @@ namespace Skillbox_Homework_20
         }
     }
 
+    /// <summary>
+    /// For initial filling the database
+    /// </summary>
     public static class SampleData
     {
         public static void Initialize(myContext context)

@@ -1,72 +1,138 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <style>
-            div{
-                margin: 10px;
-                border: 1px solid black;
-                font-size: 20px;
-                height: 80px;
-            }
+<head>
 
-            #header{ 
-                background-color: #ccc;
-            }
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-            #leftSidebar {
-                background-color: #ddd;
-                float: left;
-                width: 150px;
-            }
-
-            #rightSidebar {
-                background-color: #bbb;
-                float: right;
-                width: 150px;
-            }
-
-            #main {
-                background-color: #eee;
-                height: 200px;
-                margin-left: 170px;
-                margin-right: 170px;
-            }
-
-            #footer{ 
-                background-color: #ccc;
-            }
-        </style>
-    </head>
-    <body>
-        <div id="header">Skillbox</div>
-        <div id="leftSidebar">Здесь могла бы быть ваша реклама</div>
-        <div id="rightSidebar">Здесь будут кнопки и нормальный дизайн с:</div>
-        <div id="main">
-        @model IEnumerable<Skillbox_Homework_20.Database.Information>
-        @{
-            Layout = null;
-
-            <table class="table">
-                <tr>
-                    <td>Id</td>
-                    <td>SecondName</td>
-                    <td>FirstName</td>
-                    <td>Patronymic</td>
-                </tr>
-
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td><a href="~/Home/Show/@item.Id">@item.Id</a></td>
-                        <td>@item.SecondName</td>
-                        <td>@item.FirstName</td>
-                        <td>@item.Patronymic</td>
-                    </tr>
-                }
-            </table>
+    <style>
+        .table-fixed thead {
+            width: 97%;
         }
+
+        .table-fixed tbody {
+            height: 230px;
+            overflow-y: auto;
+            width: 100%;
+        }
+
+        .table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+            display: block;
+        }
+
+        .table-fixed tbody td, .table-fixed thead > tr > th {
+            float: left;
+            border-bottom-width: 0;
+        }
+
+        .btn{
+         color: #313133;
+         background: linear-gradient(90deg, rgba(129,230,217,1) 0%, rgba(79,209,197,1) 100%);
+         font-size: 18px;
+         font-weight: 700;
+         letter-spacing: 1px;
+         text-transform: uppercase;
+         padding: 8px 20px;
+         margin: 0 15px;
+         border: none;
+         border-radius: 50px;
+         position: relative;
+         z-index: 1;
+         transition: all 0.3s ease-in-out 0s;
+        }
+        .btn:focus,
+        .btn:hover{
+         color: #313133;
+         background: linear-gradient(90deg, rgba(129,230,217,1) 0%, rgba(79,209,197,1) 100%);
+         transform: translateY(-6px);
+        } 
+        .btn:before{
+         content: '';
+         min-width: calc(100% + 17px);
+         min-height: calc(100% + 17px);
+         border-radius: 50px;
+         border: 5px solid #00FFCB;
+         box-shadow: 0 0 40px rgba(0,255,203,.7);
+         opacity: 0;
+         transform: translateX(-50%) translateY(-50%) scale(0.5);
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transition: all .3s ease-in-out 0s;
+        }
+        .btn:hover:before{
+         opacity: 1;
+         transform: translateX(-50%) translateY(-50%) scale(1);
+        }
+
+        .footer {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>
+                        База данных
+                    </h3>                  
+                </div>
+                <table class="table table-fixed">
+                    <thead>
+                        <tr>
+                            <th class="col-xs-3">Id</th>
+                            <th class="col-xs-3">SecondName</th>
+                            <th class="col-xs-3">FirstName</th>
+                            <th class="col-xs-3">Patronymic</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @model IEnumerable<Skillbox_Homework_20.Database.Information>
+                        @{
+                            Layout = null;
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                <td class="col-xs-3"><a href="~/Home/Show/@item.Id">@item.Id</a></td>
+                                <td class="col-xs-3">@item.SecondName</td>
+                                <td class="col-xs-3">@item.FirstName</td>
+                                <td class="col-xs-3">@item.Patronymic</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-md-4">
+                <a href="~/Home/AddForm/" class="btn btn-lg">
+                    <span>Add</span>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="~/Home/Update/" class="btn btn-lg">
+                    <span>Update</span>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="~/Home/Delete/" class="btn btn-lg">
+                    <span>Delete</span>
+                </a>
+            </div>
         </div>
-        <div id="footer">2022</div>
-    </body>
+    </div>
+
+    <footer class="bg-light text-center footer">    
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2020 Copyright
+        </div>
+        <!-- Copyright -->
+    </footer>
+</body>
 </html>

@@ -1,8 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-
-    <meta charset="utf-8">
+    <title>Оформление заказа</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
     <style>
@@ -71,66 +70,48 @@
         .footer {
             margin-top: 10px;
         }
+
+        .setmarginbottom10 {
+            margin-bottom: 10px;
+        }
+
+        .setmargintop10 {
+            margin-top: 10px;
+        }
     </style>
 </head>
-
 <body>
     <div class="container">
         <div class="row">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3>
-                        Телефонный справочник
-                    </h3>
-                </div>
-                <table class="table table-fixed">
-                    <thead>
+            <div class="col-12 setmarginbottom10">
+                <h3>Форма удаления записи</h3>
+                <p>Введите индекс удаляемого элемента:</p>
+                <form method="post" action="/Home/Delete/@ViewBag.Id">
+                    <table>
                         <tr>
-                            <th class="col-xs-1">Id</th>
-                            <th class="col-xs-2">SecondName</th>
-                            <th class="col-xs-1">FirstName</th>
-                            <th class="col-xs-2">Patronymic</th>
-                            <th class="col-xs-2">PhoneNumber</th>
-                            <th class="col-xs-2">Adress</th>
-                            <th class="col-xs-2">Description</th>
+                            <td>Id:</td>
+                            <td><input type="number" name="Id" value="@ViewBag.Id" /> </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @model IEnumerable<Skillbox_Homework_20.Database.Information>
-                        @{
-                            Layout = null;
-                                
-                                @foreach (var item in Model)
-                                {
-                                    <tr>
-                                        <td class="col-xs-1">@item.Id</td>
-                                        <td class="col-xs-2">@item.SecondName</td>
-                                        <td class="col-xs-1">@item.FirstName</td>
-                                        <td class="col-xs-2">@item.Patronymic</td>
-                                        <td class="col-xs-2">@item.PhoneNumber</td>
-                                        <td class="col-xs-2">@item.Adress</td>
-                                        <td class="col-xs-2">@item.Description</td>
-                                    </tr>
-                                }
-                        }                        
-                    </tbody>
-                </table>
+                        
+                        <tr>
+                            <td>
+                                <input type="submit" value="Удалить" />
+                            </td>
+                        </tr>
+                    </table>
+                </form>
             </div>
 
-            <div class="col-md-4">
-                <a href="history.back();" class="btn btn-lg">
-                    <span>Back</span>
-                </a>
+            <div class="col-12 setmargintop10">
+                <a class="btn btn-lg" onclick="javascript:history.back(-2); return false;">Back</a>
             </div>
         </div>
     </div>
-
     <footer class="bg-light text-center footer">
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
             © 2020 Copyright
         </div>
         <!-- Copyright -->
     </footer>
-
 </body>
 </html>
